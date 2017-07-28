@@ -162,11 +162,11 @@ select * from admin;
 select * from zamowienie;
 select * from film;
 #Usunięcie kolumny z tabeli
-alter table film
-drop numer;
+#alter table film
+#drop numer;
 #Zmiana nazwy kolumny oraz typ danych
-alter table film
-change czas_trwania czas_trwania_min int(3);
+#alter table film
+#change czas_trwania czas_trwania_min int(3);
 #Wyszukaj filmy, których czas trwania jest dłuższy niż 140min i krótszy niż 180min
 select * from film where czas_trwania_min > 140 and czas_trwania_min < 180;
 #Wyszukaj filmy w reżyserii Jamesa Camerona
@@ -251,3 +251,4 @@ create trigger mniej_niedostepnych_filmow
 after insert on zamowienie
 for each row update niedostepne
 set NEW.data_zwrotu = now();
+select * from dostepne;
