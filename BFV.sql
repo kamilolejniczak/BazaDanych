@@ -212,7 +212,7 @@ WHERE
 GROUP BY tytuł
 having Dostępność = 'dostępny';
 #Tworzenie widoku filmów dostępnych do wypożyczenia
-create view dostepne as
+#create view dostepne as
 SELECT 
     tytuł AS Tytuł,
     CASE
@@ -228,7 +228,7 @@ GROUP BY tytuł
 having Dostępność = 'dostępny';
 select * from dostepne;
 #Tworzenie widoku filmów niedostępnych do wypożyczenia
-create view niedostepne as
+#create view niedostepne as
 SELECT 
     tytuł,
     COALESCE(data_zwrotu, 'niedostępny') AS dostępność
@@ -242,12 +242,12 @@ GROUP BY tytuł
 HAVING dostępność = 'niedostępny';
 select * from niedostepne;
 #Trigger po dodaniu daty zwrotu filmu aktualizowana jest tabela dostepne filmy i lista się zwiększa
-create trigger dodanie_dostepnych_filmow
+#create trigger dodanie_dostepnych_filmow
 after insert on zamowienie
 for each row update dostepne
 set NEW.data_zwrotu = now();
 #Trigger po dodaniu daty zwrotu filmu aktualizowana jest tabela niedostepne filmy i lista się zmniejsza
-create trigger mniej_niedostepnych_filmow
+#create trigger mniej_niedostepnych_filmow
 after insert on zamowienie
 for each row update niedostepne
 set NEW.data_zwrotu = now();
